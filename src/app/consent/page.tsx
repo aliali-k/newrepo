@@ -34,25 +34,25 @@ function ConsentToggle({
       type="button"
       onClick={() => onChange(!checked)}
       className={clsx(
-        "w-full text-left rounded-[var(--radius-md)] border p-4 flex items-start gap-4 transition-colors",
-        checked ? "border-[var(--signal)] bg-[var(--signal-soft)]" : "border-[var(--line)] bg-[var(--paper)]"
+        "w-full text-left rounded-[var(--radius-lg)] border p-4 flex items-start gap-4 transition-all",
+        checked ? "border-[var(--accent)] bg-[var(--accent-soft)]" : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--border-hover)]"
       )}
     >
       <span
         className={clsx(
-          "mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors",
-          checked ? "border-[var(--signal)] bg-[var(--signal)]" : "border-[var(--line)]"
+          "mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all",
+          checked ? "border-[var(--accent)] bg-[var(--accent)]" : "border-[var(--border-hover)]"
         )}
       >
         {checked && (
-          <svg viewBox="0 0 12 12" className="w-2.5 h-2.5 text-[var(--paper-raised)]" fill="none">
-            <path d="M2 6l2.5 2.5L10 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 12 12" className="w-2.5 h-2.5 text-white" fill="none">
+            <path d="M2 6l2.5 2.5L10 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         )}
       </span>
       <span>
-        <span className="block text-sm font-medium text-[var(--ink)] mb-0.5">{title}</span>
-        <span className="block text-xs text-[var(--ink-soft)] leading-relaxed">{body}</span>
+        <span className="block text-sm font-medium text-[var(--text)] mb-0.5">{title}</span>
+        <span className="block text-xs text-[var(--text-secondary)] leading-relaxed">{body}</span>
       </span>
     </button>
   );
@@ -108,16 +108,16 @@ export default function ConsentPage() {
 
   return (
     <CandidateFlowShell step="consent">
-      <h1 className="text-3xl mb-2">Before we begin</h1>
-      <p className="text-[var(--ink-soft)] mb-8 text-sm">
+      <h1 className="text-3xl mb-2 font-[family-name:var(--font-display)] font-semibold">Before we begin</h1>
+      <p className="text-[var(--text-secondary)] mb-8 text-sm">
         A quick, honest heads-up about how this works.
       </p>
 
       <Card className="mb-5">
         <ul className="space-y-3">
           {POINTS.map((p) => (
-            <li key={p} className="flex gap-3 text-sm text-[var(--ink-soft)] leading-relaxed">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--signal)] mt-1.5 shrink-0" />
+            <li key={p} className="flex gap-3 text-sm text-[var(--text-secondary)] leading-relaxed">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-1.5 shrink-0" />
               {p}
             </li>
           ))}
@@ -147,7 +147,7 @@ export default function ConsentPage() {
 
       {cameraConsent && (
         <Card className="mb-5">
-          <div className="text-xs text-[var(--ink-faint)] mb-3 font-mono-data uppercase tracking-wide">Baseline camera checkpoint</div>
+          <div className="text-xs text-[var(--text-tertiary)] mb-3 font-mono-data uppercase tracking-wide">Baseline camera checkpoint</div>
           <BaselineCaptureFlow
             videoRef={cameraVideoRef}
             cameraStatus={cameraStatus}

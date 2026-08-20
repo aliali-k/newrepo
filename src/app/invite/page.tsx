@@ -66,8 +66,8 @@ function InvitePageInner() {
 
   return (
     <CandidateFlowShell step="invite">
-      <h1 className="text-3xl mb-2">Your interview invite</h1>
-      <p className="text-[var(--ink-soft)] mb-8 text-sm">
+      <h1 className="text-3xl mb-2 font-[family-name:var(--font-display)] font-semibold">Your interview invite</h1>
+      <p className="text-[var(--text-secondary)] mb-8 text-sm">
         This is a one-time link scheduled just for you.
       </p>
       <Card>
@@ -90,9 +90,9 @@ function InvitePageInner() {
         )}
 
         {invite && (
-          <div className="animate-rise-in">
-            <p className="text-sm text-[var(--ink-faint)] mb-1">Welcome,</p>
-            <h2 className="text-2xl mb-4 text-[var(--ink)]">{invite.candidate_name}</h2>
+          <div className="animate-slide-up">
+            <p className="text-sm text-[var(--text-tertiary)] mb-1">Welcome,</p>
+            <h2 className="text-2xl mb-4 text-[var(--text)] font-[family-name:var(--font-display)] font-semibold">{invite.candidate_name}</h2>
             {invite.subjects?.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
                 {invite.subjects.map((s) => (

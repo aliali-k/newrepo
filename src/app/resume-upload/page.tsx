@@ -81,15 +81,15 @@ export default function ResumeUploadPage() {
 
   return (
     <CandidateFlowShell step="resume">
-      <h1 className="text-3xl mb-2">Upload your resume</h1>
-      <p className="text-[var(--ink-soft)] mb-8 text-sm max-w-xl">
+      <h1 className="text-3xl mb-2 font-[family-name:var(--font-display)] font-semibold">Upload your resume</h1>
+      <p className="text-[var(--text-secondary)] mb-8 text-sm max-w-xl">
         We read the full text, recover hyperlinks hidden behind plain text (like a
         &quot;GitHub&quot; link), and scrub personal details before anything reaches the interview.
       </p>
 
       {status !== "done" && (
         <Card
-          className={`border-dashed transition-colors ${dragOver ? "border-[var(--signal)]" : ""}`}
+          className={`border-dashed transition-colors ${dragOver ? "border-[var(--accent)] bg-[var(--accent-soft)]" : ""}`}
         >
           <div
             onDragOver={(e) => {
@@ -119,17 +119,17 @@ export default function ResumeUploadPage() {
             {status === "uploading" ? (
               <>
                 <Spinner className="w-6 h-6 mb-4" />
-                <p className="text-sm text-[var(--ink-soft)]">Reading {file?.name}…</p>
+                <p className="text-sm text-[var(--text-secondary)]">Reading {file?.name}…</p>
               </>
             ) : (
               <>
-                <div className="w-12 h-12 rounded-full bg-[var(--paper-sunk)] mb-4 flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-[var(--ink-faint)]" fill="none">
+                <div className="w-12 h-12 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] mb-4 flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-[var(--text-tertiary)]" fill="none">
                     <path d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <p className="text-sm mb-1">Drop your resume here, or click to browse</p>
-                <p className="text-xs text-[var(--ink-faint)]">PDF, DOCX or TXT — up to 10MB</p>
+                <p className="text-sm mb-1 text-[var(--text)]">Drop your resume here, or click to browse</p>
+                <p className="text-xs text-[var(--text-tertiary)]">PDF, DOCX or TXT — up to 10MB</p>
               </>
             )}
           </div>
@@ -139,26 +139,26 @@ export default function ResumeUploadPage() {
       <ErrorNote>{error}</ErrorNote>
 
       {status === "done" && profile && (
-        <div className="animate-rise-in space-y-5 mt-2">
+        <div className="animate-slide-up space-y-5 mt-2">
           <Card>
-            <div className="flex items-start gap-4 mb-5 pb-5 border-b border-[var(--line-soft)]">
-              <div className="w-14 h-14 rounded-full bg-[var(--navy)] text-[var(--paper-raised)] flex items-center justify-center font-[family-name:var(--font-display)] text-lg shrink-0">
+            <div className="flex items-start gap-4 mb-5 pb-5 border-b border-[var(--border)]">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-active)] text-white flex items-center justify-center font-[family-name:var(--font-display)] text-lg font-semibold shrink-0">
                 {initials}
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h2 className="text-lg text-[var(--ink)]">{local.candidateName || "Your profile"}</h2>
+                  <h2 className="text-lg text-[var(--text)] font-medium">{local.candidateName || "Your profile"}</h2>
                   <Badge tone="good">Processed</Badge>
                 </div>
                 {profile.subjects?.length > 0 && (
-                  <p className="text-sm text-[var(--ink-faint)] mt-0.5">{profile.subjects.join(" · ")}</p>
+                  <p className="text-sm text-[var(--text-tertiary)] mt-0.5">{profile.subjects.join(" · ")}</p>
                 )}
               </div>
             </div>
 
             {profile.skills?.length > 0 && (
               <div className="mb-5">
-                <div className="text-xs text-[var(--ink-faint)] mb-2 font-mono-data uppercase tracking-wide">Skills</div>
+                <div className="text-xs text-[var(--text-tertiary)] mb-2 font-mono-data uppercase tracking-wide">Skills</div>
                 <div className="flex flex-wrap gap-2">
                   {profile.skills.map((s) => (
                     <Badge key={s}>{s}</Badge>
@@ -169,20 +169,20 @@ export default function ResumeUploadPage() {
 
             {profile.projects?.length > 0 && (
               <div className="mb-2">
-                <div className="text-xs text-[var(--ink-faint)] mb-2 font-mono-data uppercase tracking-wide">Projects</div>
+                <div className="text-xs text-[var(--text-tertiary)] mb-2 font-mono-data uppercase tracking-wide">Projects</div>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {profile.projects.map((p) => {
                     const githubLink = p.links?.find((l) => l.toLowerCase().includes("github.com"));
                     return (
-                      <div key={p.title} className="rounded-[var(--radius-md)] border border-[var(--line)] bg-[var(--paper)] p-4">
+                      <div key={p.title} className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-2)] p-4 hover:border-[var(--border-hover)] transition-colors">
                         <div className="flex items-start justify-between gap-3 mb-1.5">
-                          <div className="text-sm font-medium text-[var(--ink)]">{p.title}</div>
+                          <div className="text-sm font-medium text-[var(--text)]">{p.title}</div>
                           {githubLink && (
                             <span
-                              className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-mono-data border ${
+                              className={`shrink-0 inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-mono-data border ${
                                 p.github_understanding
-                                  ? "bg-[var(--good-soft)] text-[var(--good)] border-transparent"
-                                  : "bg-[var(--paper-sunk)] text-[var(--ink-faint)] border-[var(--line)]"
+                                  ? "bg-[var(--success-soft)] text-[var(--success-text)] border-transparent"
+                                  : "bg-[var(--surface-3)] text-[var(--text-tertiary)] border-[var(--border)]"
                               }`}
                             >
                               {p.github_understanding ? "✓ verified" : "GitHub"}
@@ -190,7 +190,7 @@ export default function ResumeUploadPage() {
                           )}
                         </div>
                         {p.description && (
-                          <p className="text-xs text-[var(--ink-soft)] leading-relaxed mb-2">{p.description}</p>
+                          <p className="text-xs text-[var(--text-secondary)] leading-relaxed mb-2">{p.description}</p>
                         )}
                         {githubLink && !p.github_understanding && (
                           <Button
@@ -203,7 +203,7 @@ export default function ResumeUploadPage() {
                           </Button>
                         )}
                         {p.github_understanding && (
-                          <div className="mt-2 pt-2 border-t border-[var(--line-soft)] text-xs text-[var(--ink-soft)]">
+                          <div className="mt-2 pt-2 border-t border-[var(--border)] text-xs text-[var(--text-secondary)]">
                             <div className="flex items-center gap-2 mb-1.5">
                               <Badge tone={p.github_understanding.claimed_vs_actual_match === "match" ? "good" : "caution"}>
                                 {p.github_understanding.claimed_vs_actual_match.replace("_", " ")}
@@ -221,8 +221,8 @@ export default function ResumeUploadPage() {
             )}
 
             {profile.hyperlinks?.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-[var(--line-soft)]">
-                <div className="text-xs text-[var(--ink-faint)] mb-2 font-mono-data uppercase tracking-wide">Links recovered from the document</div>
+              <div className="mt-4 pt-4 border-t border-[var(--border)]">
+                <div className="text-xs text-[var(--text-tertiary)] mb-2 font-mono-data uppercase tracking-wide">Links recovered from the document</div>
                 <div className="flex flex-wrap gap-2">
                   {profile.hyperlinks.map((h, i) => (
                     <Badge key={i}>{h.link_type}</Badge>

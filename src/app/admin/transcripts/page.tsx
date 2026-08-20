@@ -27,8 +27,8 @@ export default function TranscriptsPage() {
   if (!adminKey) {
     return (
       <Shell narrow>
-        <p className="text-sm text-[var(--text-muted)]">
-          Please <Link href="/admin" className="text-[var(--accent)] underline">sign in</Link> first.
+        <p className="text-sm text-[var(--text-secondary)]">
+          Please <Link href="/admin" className="text-[var(--accent-text)] underline">sign in</Link> first.
         </p>
       </Shell>
     );
@@ -36,34 +36,34 @@ export default function TranscriptsPage() {
 
   return (
     <Shell>
-      <Link href="/admin" className="text-xs text-[var(--text-faint)] hover:text-[var(--text-muted)]">
+      <Link href="/admin" className="text-xs text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors">
         ← All candidates
       </Link>
-      <h1 className="text-3xl mt-3 mb-8">All transcripts</h1>
+      <h1 className="text-3xl mt-3 mb-8 font-[family-name:var(--font-display)] font-semibold">All transcripts</h1>
       <ErrorNote>{error}</ErrorNote>
       {loading && (
         <div className="flex justify-center py-16">
           <Spinner className="w-6 h-6" />
         </div>
       )}
-      <div className="space-y-4">
+      <div className="space-y-4 stagger">
         {data.map((d) => (
           <Card key={d.session_id}>
             <Link
               href={`/admin/candidate/${d.session_id}`}
-              className="text-sm font-medium text-[var(--accent)] hover:underline"
+              className="text-sm font-medium text-[var(--accent-text)] hover:underline"
             >
               {d.session_id}
             </Link>
             <div className="mt-3 space-y-1.5 max-h-48 overflow-y-auto pr-2">
               {d.events.slice(0, 8).map((e, i) => (
-                <div key={i} className="text-xs text-[var(--text-muted)]">
-                  <span className="text-[var(--text-faint)] mr-1.5">{e.speaker}:</span>
+                <div key={i} className="text-xs text-[var(--text-secondary)]">
+                  <span className="text-[var(--text-tertiary)] mr-1.5">{e.speaker}:</span>
                   {e.text.slice(0, 140)}
                 </div>
               ))}
               {d.events.length > 8 && (
-                <div className="text-xs text-[var(--text-faint)]">+{d.events.length - 8} more…</div>
+                <div className="text-xs text-[var(--text-tertiary)]">+{d.events.length - 8} more…</div>
               )}
             </div>
           </Card>

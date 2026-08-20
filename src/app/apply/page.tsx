@@ -30,8 +30,8 @@ export default function ApplyPage() {
 
   return (
     <CandidateFlowShell step="apply">
-      <h1 className="text-3xl mb-2">Tell us about you</h1>
-      <p className="text-[var(--ink-soft)] mb-8 text-sm">
+      <h1 className="text-3xl mb-2 font-[family-name:var(--font-display)] font-semibold">Tell us about you</h1>
+      <p className="text-[var(--text-secondary)] mb-8 text-sm">
         This creates your mentor candidate profile. Next, you&apos;ll upload your resume.
       </p>
       <Card>
