@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+:root {
+  /* Paper -- warm, slightly grey cream, not the default AI-cream */
+  --paper: #f2ede1;
+  --paper-raised: #fbf8f1;
+  --paper-sunk: #e9e2d1;
+
+  /* Ink -- deep navy-black, never pure black */
+  --ink: #16212c;
+  --ink-soft: #47545f;
+  --ink-faint: #8a9099;
+
+  /* Structural navy -- nav, accent bars, dark surfaces */
+  --navy: #1f3450;
+  --navy-deep: #0f1c2b;
+  --navy-soft: #e4e9f0;
+
+  /* Hairlines */
+  --line: #ddd3ba;
+  --line-soft: #e9e1cd;
+
+  /* Signal -- verified / live / trust accent (teal, not terracotta) */
+  --signal: #1e7a6e;
+  --signal-strong: #15594f;
+  --signal-soft: #dce9e4;
+  --signal-text: #0f4a41;
+
+  /* Warm secondary accent -- used sparingly for warmth cues */
+  --warm: #b8791a;
+  --warm-soft: #f1e3c8;
+  --warm-text: #6b4a10;
+
+  --good: #2f7d4f;
+  --good-soft: #dfeee2;
+  --caution: #a85d1f;
+  --caution-soft: #f3e2cd;
+  --danger: #a3402c;
+  --danger-soft: #f4e0d9;
+
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Legacy aliases -- old component code still references these names */
+  --bg: var(--paper);
+  --bg-soft: var(--paper);
+  --surface: var(--paper-raised);
+  --surface-2: var(--paper-sunk);
+  --surface-3: var(--line-soft);
+  --border: var(--line);
+  --border-soft: var(--line-soft);
+  --text: var(--ink);
+  --text-muted: var(--ink-soft);
+  --text-faint: var(--ink-faint);
+  --accent: var(--signal);
+  --accent-strong: var(--signal-strong);
+  --accent-soft: var(--signal-soft);
+  --accent-text: var(--signal-text);
+  --font-inter: var(--font-body);
+  --font-sora: var(--font-display);
+}
+
+/* Dark "console" theme -- scoped to the interview room only */
+.console-theme {
+  --paper: var(--navy-deep);
+  --paper-raised: #16273a;
+  --paper-sunk: #0b1520;
+  --ink: #eef3f8;
+  --ink-soft: #a9b7c6;
+  --ink-faint: #6c7c8d;
+  --line: #29405a;
+  --line-soft: #1f3247;
+  --navy-soft: #1c3350;
+
+  --bg: var(--paper);
+  --bg-soft: var(--paper);
+  --surface: var(--paper-raised);
+  --surface-2: var(--paper-sunk);
+  --surface-3: var(--line-soft);
+  --border: var(--line);
+  --border-soft: var(--line-soft);
+  --text: var(--ink);
+  --text-muted: var(--ink-soft);
+  --text-faint: var(--ink-faint);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+body {
+  background-image: radial-gradient(circle at 12% -8%, rgba(31, 52, 80, 0.06), transparent 42%),
+    radial-gradient(circle at 90% 0%, rgba(30, 122, 110, 0.05), transparent 38%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+.font-mono-data { font-family: var(--font-mono); }
+
+::selection { background: var(--signal-soft); color: var(--signal-text); }
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+
+@keyframes gentle-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+.animate-gentle-pulse { animation: gentle-pulse 2.2s ease-in-out infinite; }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise-in { animation: rise-in 0.35s ease-out both; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-toast-in { animation: toast-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 122, 110, 0.35); }
+  70% { box-shadow: 0 0 0 6px rgba(30, 122, 110, 0); }
+}
+.status-dot-live { animation: dot-pulse 1.8s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gentle-pulse, .animate-rise-in, .animate-toast-in, .status-dot-live { animation: none !important; }
+}
